@@ -1,0 +1,126 @@
+Alex Waclawik
+Final Project Algorithm
+December 10th, 2019
+
+Goal: A program that will encrypt and decrypt text inputs for the user. 
+
+Inputs: 
+-User inputs text to be encrypted
+-User inputs text to be decrypted
+
+Outputs:
+-Program decrypts input text for the user
+-Program encrypts input text for the user
+
+Algorithm:
+
+import hashlib
+import random
+import string
+
+cipherText = []
+decodedText = []
+
+Main Function:
+	keepGoing is True
+	while keepGoing is True:
+		'userResponse' is equal to menu function
+		if 'userResponse' is 1:
+			encodeText function
+			clear cipherText
+		elif 'userResponse' is 2:
+			decodeText function
+			clear cipherText
+		elif 'userResponse' is 0:
+			output "Shutting Down..."
+			keepGoing is False
+		else:
+			output "Error: Invalid Input"
+
+Menu Function:
+	"Alex's POS (Pretty OK Security) Encryption Tool // Version 1.0
+
+    	0) Shut Down
+    	1) Encrypt
+    	2) Decrypt"
+	user input ("Select Option: ")
+	return the user input
+	
+
+encodeText():
+	'plainText' = user input ("Text to be encrypted: ")
+	'plainText' is made uppercase with no spaces
+	if any character is 'plainText' is a non-letter and non-number:
+		output "Error: Letters and numbers only"
+		return to main
+	elif length of 'plainText' is greater than 48:
+		output "Error: 48 character limit")
+		return to main
+	elif length of 'plainText' is less than 48:
+		add the remaining (48 - length of plainText) as "-"
+	take MD5 hash of 'plainText' and store in 'plainHash'
+	make 'plainHash' uppercase
+	plainText equals encodeBinary(plainText)
+	plainHash equals encodeBinary(plainHash)
+	make 'plainText' and 'plainHash' into lists
+	XOR(plainText, plainHash)
+	fillerNumber equals 1024 - (length of cipherText + length of plainHash
+	fillerBinary equals randomBinary(fillerNumber)
+
+	cipherText1 equals cipherText + fillerBinary
+	cipherText2 = cipherText1 + plainHash
+
+	make cipherText2 into a string
+	output "Encrypted Text: " 'cypherText2'
+
+decodeText():
+	'decryptText' equals user input ("Text to be decrypted: ")
+	if length of 'decryptText' is not equal to 1024:
+		output "Error: Must be 1024 characters"
+	else:
+		pass
+	'decryptList' equals the list of 'decryptText'
+	'plainHash' equals the index[768:] of 'decryptList'
+	'plainText' equals the index[:384] of 'decryptList'
+	XOR(plainText, plainHash)
+	decodedHash = decodeBinary(plainHash)
+	decodedText = decodeBinary(cipherText)
+	make 'decodedHash' into string and all lowercase
+	make 'decodedtext' into string
+	take md5 hash of 'decodedText' and store in 'testHash'
+	output "Decrypted Message: " with 'decodedText'
+	if 'decodedHash' is 'testHash':
+		output "decodedHash != testHash
+		output "Message has been untampered with."
+	else:
+		output "decodedHash != testHash"
+		output "Message has been tampered with."
+
+def encodeBinary(target):
+	for every value in 'target':
+		translate using 'binaryEncode' dictionary
+		join back into 'target'
+		return target
+
+def decodeBinary(target):
+	for every eight values in 'target':
+		translate using 'binaryDecode' dictionary
+		join back into 'target' 	
+		return target
+
+randomBinary(fillerNumber):
+	for integer in fillerNumber:
+		pick random value from range(0, 1)
+		join it back into 'fillerNumber'
+		return('fillerNumber')
+
+def XOR(plainText, plainHash):
+	for value in length of 'plainText':
+		if x-index of plainHash is greater than x-index of plainText:
+			append 1 to cipherText
+		elif x-index of plainHash is less than x-index of plainText:
+			append 1 to cipherText
+		else:
+			append 0 to cipherText
+
+	
